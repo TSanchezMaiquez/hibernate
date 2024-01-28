@@ -2,6 +2,7 @@ package com.sanchez.test.CRUD;
 
 import com.sanchez.jardineriahibernate.HibernateUtil;
 import com.sanchez.jardineriahibernate.model.Product;
+import com.sanchez.jardineriahibernate.model.ProductRange;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Test;
 
@@ -14,20 +15,19 @@ public class CRUDProductRangeTest {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        //String rangeCode, String html_description, String textDescription, String image
+        var pr1 = new ProductRange("1", "htm1", "txt1", "img1");
+        var pr2 = new ProductRange("2", "htm2", "txt2", "img2");
 
-        Product product1 = new Product("1", "Producto1", "Rango1", "10x20", "Proveedor1", "Descripción1", 100, new BigDecimal("25.99"), new BigDecimal("20.50"));
-
-        Product product2 = new Product("2", "Producto2", "Rango2", 50, new BigDecimal("19.99"));
-
-        session.persist(product1);
-        session.persist(product2);
+        session.persist(pr1);
+        session.persist(pr2);
 
         session.getTransaction().commit();
 
         session.close();
 
-        System.out.println(product1);
-        System.out.println(product2);
+        System.out.println(pr1);
+        System.out.println(pr2);
 
     }
 
@@ -39,11 +39,11 @@ public class CRUDProductRangeTest {
         session.beginTransaction();
 
         // Recuperar un producto por su identificador
-        Product productToUpdate = session.find(Product.class, "1");
+        var productToUpdate = session.find(ProductRange.class, "1");
 
         // Actualizar propiedades del producto
-        productToUpdate.setDescription("Nueva descripción");
-        productToUpdate.setSalesPrice(new BigDecimal("29.99"));
+        productToUpdate.setTextDescription("Nueva descripción");
+        productToUpdate.setImage("hty");
 
         // Guardar los cambios
         session.merge(productToUpdate);
@@ -56,14 +56,11 @@ public class CRUDProductRangeTest {
     void retrieve() {
         createData();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
-        // Recuperar un producto por su identificador
-        Product retrievedProduct = session.find(Product.class, "1");
+        var retrievedProduct = session.find(ProductRange.class, "1");
 
         System.out.println(retrievedProduct);
 
-        session.getTransaction().commit();
         session.close();
     }
 
@@ -74,7 +71,7 @@ public class CRUDProductRangeTest {
         session.beginTransaction();
 
         // Recuperar un producto por su identificador
-        Product productToDelete = session.find(Product.class, "1");
+        var productToDelete = session.find(ProductRange.class, "1");
 
         // Eliminar el producto
         session.remove(productToDelete);
@@ -86,15 +83,24 @@ public class CRUDProductRangeTest {
     void createData() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        //String rangeCode, String html_description, String textDescription, String image
+        var pr1 = new ProductRange("1", "htm1", "txt1", "img1");
+        var pr2 = new ProductRange("2", "htm2", "txt2", "img2");
+        var pr3 = new ProductRange("3", "htm3", "txt3", "img3");
+        var pr4 = new ProductRange("4", "htm4", "txt4", "img4");
+        var pr5 = new ProductRange("5", "htm5", "txt5", "img5");
+        var pr6 = new ProductRange("6", "htm6", "txt6", "img6");
 
-        Product product1 = new Product("1", "Producto1", "Rango1", "10x20", "Proveedor1", "Descripción1", 100, new BigDecimal("25.99"), new BigDecimal("20.50"));
+        session.persist(pr1);
+        session.persist(pr2);
+        session.persist(pr3);
+        session.persist(pr4);
+        session.persist(pr5);
+        session.persist(pr6);
 
-        Product product2 = new Product("2", "Producto2", "Rango2", 50, new BigDecimal("19.99"));
-
-        session.persist(product1);
-        session.persist(product2);
 
         session.getTransaction().commit();
+
         session.close();
     }
 }

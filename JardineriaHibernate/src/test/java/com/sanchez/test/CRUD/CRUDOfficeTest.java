@@ -34,7 +34,6 @@ public class CRUDOfficeTest {
 
         createData();
         Session session =  HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
         var office1 = session.find(Office.class, "123");
         var office2 = session.find(Office.class, "1234");

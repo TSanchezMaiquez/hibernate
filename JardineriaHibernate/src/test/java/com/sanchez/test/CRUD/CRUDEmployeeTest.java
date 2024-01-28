@@ -32,7 +32,6 @@ public class CRUDEmployeeTest {
     void retrieve (){
         createData();
         Session session =  HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
         var emp1 = session.find(Employee.class, 1L);
         var emp2 = session.find(Employee.class, 2L);

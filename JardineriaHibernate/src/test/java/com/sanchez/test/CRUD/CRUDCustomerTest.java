@@ -38,7 +38,6 @@ public class CRUDCustomerTest {
 
         createDate();
         Session session =  HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
         var cust1 = session.find(Customer.class, 1L);
         var cust2 = session.find(Customer.class, 2L);
