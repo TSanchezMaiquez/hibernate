@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/esquemaCreado?createDatabaseIfNotExist=true
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.connection.pool_size">50</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">false</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <mapping class="com.example.mappedsuperclass.Employee" />
+        <mapping class="com.example.mappedsuperclass.Customer" />
+        <mapping class="com.example.mappedsuperclass.User" />
+        <mapping class="com.example.tableperClass.Vehicle" />
+        <mapping class="com.example.tableperClass.Car" />
+        <mapping class="com.example.tableperClass.Motorcycle" />
+        <mapping class="com.example.tableperClass.Owner" />
+        <mapping class="com.example.joined.Computer" />
+        <mapping class="com.example.joined.Device" />
+        <mapping class="com.example.joined.DeviceOwner" />
+        <mapping class="com.example.joined.Phone" />
+        <mapping class="com.example.singletable.Account" />
+        <mapping class="com.example.singletable.AccountOwner" />
+        <mapping class="com.example.singletable.BasicAccount" />
+        <mapping class="com.example.singletable.PremiumAccount" />
+
+    </session-factory>
+</hibernate-configuration>
